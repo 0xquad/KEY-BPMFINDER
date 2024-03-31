@@ -134,7 +134,7 @@ async function makeXhrRequestForAlbumOrPlaylist(token, accountToken) {
         // the Get Playlist ItemsAPI API normally, so go
         // retrieve all release date of songs in a playlist
         const items = tracksData.data.playlistV2.content.items;
-        songIdArr = items.map(itm => itm.item.data.uri.split(':')[2]);
+        songIdArr = items.filter(itm => itm.item.data.hasOwnProperty('uri')).map(itm => itm.item.data.uri.split(':')[2]);
         const albumInfoUrl = 'https://api.spotify.com/v1/tracks?ids=' + songIdArr.slice(0, 50).join(',');
         // use async/await here to wait for the promise to resolve
         const data = await makeXhrRequest('GET', albumInfoUrl, token);
