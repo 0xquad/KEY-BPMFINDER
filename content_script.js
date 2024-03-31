@@ -174,8 +174,8 @@ async function makeXhrRequestForAlbumOrPlaylist(token, accountToken) {
       // due to slow requests to /audio-features
       for (let i = 0; i < currentAudioFeatData.audio_features.length; i++) { 
         const songTitleClassName = 't_yrXoUO3qGsJS4Y6iXX';
-        let titleNode = document.querySelector(`[data-testid="playlist-tracklist"] [aria-rowindex="${i+2}"] .${songTitleClassName} div`) ||
-                        document.querySelector(`[data-testid="track-list"] [aria-rowindex="${i+2}"] .${songTitleClassName} div`);
+        let titleNode = document.querySelector(`[data-testid="playlist-tracklist"] [aria-rowindex="${i+2}"] div.${songTitleClassName}`) ||
+                        document.querySelector(`[data-testid="track-list"] [aria-rowindex="${i+2}"] div.${songTitleClassName}`);
         if (titleNode)
           addSongInfoToTitle(titleNode, currentAudioFeatData.audio_features[i], currentReleaseDates[i]);
       }
