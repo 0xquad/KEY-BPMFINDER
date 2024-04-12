@@ -1,5 +1,5 @@
 // Original author Rachel Arkebauer, 2018-2019
-// Adapted by Alexandre Hamelin, 2022-2023
+// Adapted by Alexandre Hamelin, 2022-2024
 
 // Globals for the life span of the page (they reset to null on page refresh)
 var documentObserver = null;
@@ -173,7 +173,7 @@ async function makeXhrRequestForAlbumOrPlaylist(token, accountToken) {
       // handle the case when the html nodes are already added to the document
       // due to slow requests to /audio-features
       for (let i = 0; i < currentAudioFeatData.audio_features.length; i++) { 
-        const songTitleClassName = 't_yrXoUO3qGsJS4Y6iXX';
+        const songTitleClassName = 'btE2c3IKaOXZ4VNAb8WQ';
         let titleNode = document.querySelector(`[data-testid="playlist-tracklist"] [aria-rowindex="${i+2}"] div.${songTitleClassName}`) ||
                         document.querySelector(`[data-testid="track-list"] [aria-rowindex="${i+2}"] div.${songTitleClassName}`);
         if (titleNode)
@@ -262,7 +262,7 @@ function installObserver() {
           // (probably changes every new version deployed of the web player).
           // ":scope" is needed here to find a descendant of newNode.
           // Adjust index by 2 accounting for 0-based and the table header.
-          const songTitleClassName = 't_yrXoUO3qGsJS4Y6iXX';
+          const songTitleClassName = 'btE2c3IKaOXZ4VNAb8WQ';
           const titleNode = newNode.querySelector(`:scope .${songTitleClassName} div`) ||  // playlist page
                             newNode.querySelector(`:scope div.${songTitleClassName}`);     // album page
           const trackIndex = parseInt(newNode.getAttribute('aria-rowindex')) - 2;
@@ -282,9 +282,9 @@ function installObserver() {
 }
 
 function adjustColumnsWidth() {
-  document.querySelectorAll('[aria-colcount="5"] .wTUruPetkKdWAR1dd6w4').forEach(elem => {
+  document.querySelectorAll('[aria-colcount="5"] .UpiE7J6vPrJIa59qxts4').forEach(elem => {
     elem.style.gridTemplateColumns =
-      '[index] 16px [first] 12fr [var1] 4fr [var2] 1fr [last] minmax(120px,1fr)'
+      '[index] var(--tracklist-index-column-width,16px) [first] minmax(120px,var(--col1,12fr)) [var1] minmax(120px,var(--col2,2fr)) [var1] minmax(120px,var(--col3,2fr)) [last] minmax(80px,var(--col4,1fr))'
   });
 }
 
